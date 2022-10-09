@@ -27,9 +27,9 @@ class SigninActivity: AppCompatActivity() {
             if (result.resultCode== RESULT_OK) {
                 Snackbar.make(
                     binding.root,"회원가입이 완료되었습니다.",Snackbar.LENGTH_SHORT).show()
-                rid = result.data?.getStringExtra("signup_id")
-                rpasswd = result.data?.getStringExtra("signup_passwd")
-                rmbti = result.data?.getStringExtra("signup_mbti")
+                rid = result.data?.getStringExtra(SignupActivity.id)
+                rpasswd = result.data?.getStringExtra(SignupActivity.passwd)
+                rmbti = result.data?.getStringExtra(SignupActivity.mbti)
             }
 
 
@@ -41,8 +41,8 @@ class SigninActivity: AppCompatActivity() {
                 Toast.makeText(this,"로그인에 성공했습니다.",Toast.LENGTH_SHORT).show()
                 //메인화면으로 화면 전환 + id, mbti값 전달
                 val intent=Intent(this, MainActivity::class.java)
-                intent.putExtra("sample_id",rid)
-                intent.putExtra("sample_mbti",rmbti)
+                intent.putExtra("id",rid)
+                intent.putExtra("mbti",rmbti)
                 startActivity(intent)
                 if(!isFinishing) finish()
             }

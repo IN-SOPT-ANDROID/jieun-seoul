@@ -16,12 +16,11 @@ class SignupActivity: AppCompatActivity() {
 
         binding.signupButton.setOnClickListener {
             //아이디, 비밀번호 모두 조건을 만족 할 경우
-            if(binding.signupId.length()>=6&&binding.signupId.length()<=10&&
-                binding.signupPasswd.length()>=8&&binding.signupPasswd.length()<=12){
+            if(binding.signupId.length() in 6..10&& binding.signupPasswd.length() in 8..12){
                 val intent= Intent(this,SigninActivity::class.java)
-                intent.putExtra("signup_id",binding.signupId.text.toString())
-                intent.putExtra("signup_passwd",binding.signupPasswd.text.toString())
-                intent.putExtra("signup_mbti",binding.signupMbti.text.toString())
+                intent.putExtra(id,binding.signupId.text.toString())
+                intent.putExtra(passwd,binding.signupPasswd.text.toString())
+                intent.putExtra(mbti,binding.signupMbti.text.toString())
                 setResult(RESULT_OK,intent)
                 if(!isFinishing) finish()
             }
@@ -29,13 +28,13 @@ class SignupActivity: AppCompatActivity() {
             //아이디 or 비밀번호 or 둘 다 조건을 만족하지 않는 경우
             else{
                 //비밀번호만 조건 만족X
-                if(binding.signupId.length()>=6&&binding.signupId.length()<=10){
+                if(binding.signupId.length() in 6..10){
                     Snackbar.make(
                         binding.root, "비밀번호는 8글자 이상 12글자 이내로 작성하세요.", Snackbar.LENGTH_SHORT
                     ).show()
                 }
                 //아이디만 조건 만족X
-                else if(binding.signupPasswd.length()>=8&&binding.signupPasswd.length()<=12){
+                else if(binding.signupPasswd.length() in 8..12){
                     Snackbar.make(
                         binding.root, "ID는 6글자 이상 10글자 이내로, 비밀번호는 8글자 이상 12글자 이내로 작성하세요.", Snackbar.LENGTH_SHORT
                     ).show()
@@ -46,8 +45,15 @@ class SignupActivity: AppCompatActivity() {
                         binding.root, "ID는 6글자 이상 10글자 이내로, 비밀번호는 8글자 이상 12글자 이내로 작성하세요.", Snackbar.LENGTH_SHORT
                     ).show()
                 }
+
             }
 
         }
+
+    }
+    companion object UserInfo{
+        const val id="id"
+        const val passwd="passwd"
+        const val mbti="mbti"
     }
 }
