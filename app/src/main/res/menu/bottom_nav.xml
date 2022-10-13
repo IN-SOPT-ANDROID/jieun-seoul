@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:iconTint="@color/teal_700"
+        android:id="@+id/home_menu"
+        android:icon="@drawable/ic_home_white"
+        android:title="홈"/>
+    <item
+        android:iconTint="@color/teal_700"
+        android:id="@+id/gallery_menu"
+        android:icon="@drawable/ic_gallery_white"
+        android:title="갤러리"/>
+    <item
+        android:iconTint="@color/teal_700"
+        android:id="@+id/search_menu"
+        android:icon="@drawable/ic_search_white"
+        android:title="검색"/>
+
+</menu>
