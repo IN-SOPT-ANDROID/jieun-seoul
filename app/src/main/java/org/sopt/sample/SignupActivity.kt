@@ -8,8 +8,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.sopt.sample.databinding.ActivitySignupBinding
 import org.sopt.sample.remote.ApiFactory
-import org.sopt.sample.remote.RequestSignupDTO
-import org.sopt.sample.remote.ResponseSignupDTO
+import org.sopt.sample.data.dto.response.RequestSignupDTO
+import org.sopt.sample.data.dto.response.ResponseBase
+import org.sopt.sample.data.dto.response.ResponseSignupDTO
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -93,19 +94,21 @@ class SignupActivity : AppCompatActivity() {
                     )
                     //서버통신을 할 때, 메인 스레드가 아닌 별도의 스레드가 작업을 처리하도록 하는데,
                     //enqueue를 통해 큐에 넣어 다른 스레드가 처리하도록 한다.
-                ).enqueue(object : Callback<ResponseSignupDTO> {
-                    //서버통신에 성공하여 응답값을 받아옴.
+                ).enqueue(object : Callback<ResponseBase<ResponseSignupDTO>>{
+
                     override fun onResponse(
-                        call: Call<ResponseSignupDTO>,
-                        response: Response<ResponseSignupDTO>
+                        call: Call<ResponseBase<ResponseSignupDTO>>,
+                        response: Response<ResponseBase<ResponseSignupDTO>>
                     ) {
                         Toast.makeText(this@SignupActivity, "회원가입에 성공하였습니다.", Toast.LENGTH_SHORT)
                             .show()
                         startActivity(Intent(this@SignupActivity, LoginActivity::class.java))
                     }
 
-                    //서버통신에 실패했을 때 실행되는 코드
-                    override fun onFailure(call: Call<ResponseSignupDTO>, t: Throwable) {
+                    override fun onFailure(
+                        call: Call<ResponseBase<ResponseSignupDTO>>,
+                        t: Throwable
+                    ) {
                         Toast.makeText(this@SignupActivity, "회원가입에 실패했습니다.", Toast.LENGTH_SHORT)
                             .show()
                     }
