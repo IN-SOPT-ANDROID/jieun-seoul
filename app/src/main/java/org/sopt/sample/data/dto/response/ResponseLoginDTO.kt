@@ -5,23 +5,16 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ResponseLoginDTO(
-    @SerialName("result")
-    val result: User
-) {
-    @Serializable
-    data class User(
-        @SerialName("id")
-        val id: Int,
-        @SerialName("name")
-        val name: String,
-        @SerialName("profileImage")
-        val profileImage: String?,
-        @SerialName("bio")
-        val bio: String?,
-        @SerialName("email")
-        val email: String,
-        @SerialName("password")
-        val password: String
-    )
-}
-
+    @SerialName("id")
+    val id: Int,
+    @SerialName("name")
+    val name: String,
+    @SerialName("profileImage")
+    val profileImage: String?,
+    @SerialName("bio")
+    val bio: String?,
+    @SerialName("email")
+    val email: String,
+    @SerialName("password")
+    val password: String
+)

@@ -6,8 +6,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import org.sopt.sample.databinding.ActivityLoginBinding
-import org.sopt.sample.remote.ApiFactory
-import org.sopt.sample.remote.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -22,19 +20,18 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginEvent() {
-        binding.btnlogin.setOnClickListener() {
+        binding.btnlogin.setOnClickListener {
             viewModel.login(
                 binding.etEmail.text.toString(),
                 binding.etPasswd.text.toString()
             )
         }
-        viewModel.loginResult.observe(this){
-            startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+        viewModel.loginResult.observe(this) {
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
         }
-        viewModel.errorMessage.observe(this){
-            Snackbar.make(binding.root,it,Snackbar.LENGTH_SHORT).show()
+        viewModel.errorMessage.observe(this) {
+            Snackbar.make(binding.root, it, Snackbar.LENGTH_SHORT).show()
         }
-
     }
 
     private fun signupEvent() { // 회원가입 Activity로 이동
@@ -44,4 +41,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    companion object {
+        const val TAG = "tag"
+    }
 }
