@@ -6,7 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-class GalleryFragment: Fragment() {
+
+class GalleryFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
