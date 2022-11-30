@@ -18,45 +18,45 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txt_id_title"
+        android:id="@+id/txt_id_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="32dp"
-        android:text="ID"
+        android:text="Email"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_titile" />
 
     <EditText
-        android:id="@+id/txt_id_edttext"
+        android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="20dp"
-        android:hint="아이디를 입력해주세요."
-        app:layout_constraintStart_toStartOf="@+id/txt_id_title"
-        app:layout_constraintTop_toBottomOf="@+id/txt_id_title" />
+        android:hint="이메일을 입력해주세요."
+        app:layout_constraintStart_toStartOf="@+id/txt_id_email"
+        app:layout_constraintTop_toBottomOf="@+id/txt_id_email" />
 
     <TextView
         android:id="@+id/txt_paswd_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="비밀번호"
-        android:textStyle="bold"
         android:layout_marginStart="40dp"
         android:layout_marginTop="32dp"
+        android:text="비밀번호"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_id_edttext" />
+        app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
     <EditText
-        android:id="@+id/txt_paswd_edttext"
+        android:id="@+id/et_passwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="20dp"
-        android:inputType="textWebPassword"
         android:hint="비밀번호를 입력해주세요."
+        android:inputType="textWebPassword"
         android:minHeight="48dp"
         app:layout_constraintTop_toBottomOf="@+id/txt_paswd_title"
         tools:layout_editor_absoluteX="16dp" />
@@ -68,7 +68,7 @@
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="40dp"
         android:text="LOGIN"
-        app:layout_constraintTop_toBottomOf="@+id/txt_paswd_edttext"/>
+        app:layout_constraintTop_toBottomOf="@+id/et_passwd" />
 
     <Button
         android:id="@+id/btnsignin"
