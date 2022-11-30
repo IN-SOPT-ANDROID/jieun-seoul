@@ -6,16 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import org.sopt.sample.adapter.FollowerAdapter
 import org.sopt.sample.databinding.FragmentHomeBinding
 import org.sopt.sample.remote.FollowerServicePool
-import org.sopt.sample.remote.ResponseFollowerDTO
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import org.sopt.sample.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment() {
-    private val FollowerService = FollowerServicePool.FollowerService
+    private val homeViewmodel by viewModels<HomeViewModel>()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = requireNotNull(_binding) { "HomeFragment" }
 
@@ -30,29 +28,20 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(FollowerService) {
-            getData().enqueue(object : Callback<ResponseFollowerDTO> {
-                override fun onResponse(
-                    call: Call<ResponseFollowerDTO>,
-                    response: Response<ResponseFollowerDTO>
-                ) {
-                    if (response.isSuccessful) {
-                        Log.e("success", "success")
-                        val adapter = response.body()?.let {
-                            context?.let { it1 ->
-                                FollowerAdapter(it.data, it1).apply {
-                                    setRepoList(it.data)
-                                }
-                            }
+        homeViewmodel.getData()
+        homeViewmodel.successGet.observe(viewLifecycleOwner) { success ->
+            if (success) {
+                Log.d(homeViewmodel.homeResult.value?.data.toString(), "data")
+                val adapter = context?.let { it1 ->
+                    homeViewmodel.homeResult.value?.let {
+                        FollowerAdapter(homeViewmodel.homeResult.value!!.data, it1).apply {
+                            Log.d(homeViewmodel.homeResult.value!!.toString(), "data")
+                            setRepoList(homeViewmodel.homeResult.value!!.data)
                         }
-                        binding.rvRepos.adapter = adapter
                     }
                 }
-
-                override fun onFailure(call: Call<ResponseFollowerDTO>, t: Throwable) {
-                    Log.e("server fail", "${t.message.toString()}")
-                }
-            })
+                binding.rvRepos.adapter = adapter
+            }
         }
     }
 

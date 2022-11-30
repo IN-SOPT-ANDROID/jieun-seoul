@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import org.sopt.sample.data.dto.response.Person
 import org.sopt.sample.databinding.LayoutGithubRepoBinding
-import org.sopt.sample.remote.Person
 
 class FollowerAdapter(Item: List<Person>, context: Context) :
     RecyclerView.Adapter<FollowerAdapter.RepoViewHolder>() {

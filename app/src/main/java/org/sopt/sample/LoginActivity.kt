@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import org.sopt.sample.databinding.ActivityLoginBinding
+import org.sopt.sample.viewmodel.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -41,7 +42,4 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    companion object {
-        const val TAG = "tag"
-    }
 }
