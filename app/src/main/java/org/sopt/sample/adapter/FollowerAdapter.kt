@@ -5,19 +5,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import org.sopt.sample.data.dto.response.ResponseFollowerDto
 import org.sopt.sample.databinding.LayoutGithubRepoBinding
-import org.sopt.sample.remote.Person
 
-class FollowerAdapter(Item: List<Person>, context: Context) :
+class FollowerAdapter(Item: List<ResponseFollowerDto.Person>, context: Context) :
     RecyclerView.Adapter<FollowerAdapter.RepoViewHolder>() {
     private val inflater by lazy { LayoutInflater.from(context) }
-    private var repoList: List<Person> = emptyList()
+    private var repoList: List<ResponseFollowerDto.Person> = emptyList()
     lateinit var gitBinding: LayoutGithubRepoBinding
 
     class RepoViewHolder(
         private val binding: LayoutGithubRepoBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: Person) {
+        fun onBind(data: ResponseFollowerDto.Person) {
             Glide.with(binding.root)
                 .load(data.avatar)
                 .circleCrop()
@@ -38,7 +38,7 @@ class FollowerAdapter(Item: List<Person>, context: Context) :
 
     override fun getItemCount() = repoList.size
 
-    fun setRepoList(repolist: List<Person>) {
+    fun setRepoList(repolist: List<ResponseFollowerDto.Person>) {
         this.repoList = repolist.toList()
         notifyItemRangeChanged(0, repoList.size)
     }

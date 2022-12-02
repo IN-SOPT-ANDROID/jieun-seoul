@@ -1,13 +1,12 @@
 package org.sopt.sample.remote
 
-import org.sopt.sample.data.dto.response.RequestSignupDTO
-import org.sopt.sample.data.dto.response.ResponseBase
-import org.sopt.sample.data.dto.response.ResponseSignupDTO
+import org.sopt.sample.data.dto.request.RequestSignupDto
+import org.sopt.sample.data.dto.response.ResponseSignupDto
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface SignupService {
     @POST("api/user/signup")
-    fun signup(@Body request: RequestSignupDTO): Call<ResponseBase<ResponseSignupDTO>>
+    fun signup(@Body request: RequestSignupDto): Call<ResponseSignupDto>
 }

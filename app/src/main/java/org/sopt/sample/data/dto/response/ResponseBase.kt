@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 data class ResponseBase<T>(
     val status: Int,
     val message: String,
-    val data: T
+    val result: T
 )
 
 @Serializable
