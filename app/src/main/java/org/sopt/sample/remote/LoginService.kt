@@ -1,8 +1,8 @@
 package org.sopt.sample.remote
 
-import org.sopt.sample.data.dto.request.RequestLoginDTO
+import org.sopt.sample.data.dto.request.RequestLoginDto
 import org.sopt.sample.data.dto.response.ResponseBase
-import org.sopt.sample.data.dto.response.ResponseLoginDTO
+import org.sopt.sample.data.dto.response.ResponseLoginDto
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -10,6 +10,6 @@ import retrofit2.http.POST
 interface LoginService {
     @POST("api/user/signin")
     fun login(
-        @Body request: RequestLoginDTO
-    ): Call<ResponseBase<ResponseLoginDTO>>
+        @Body request: RequestLoginDto
+    ): Call<ResponseBase<ResponseLoginDto>>
 }

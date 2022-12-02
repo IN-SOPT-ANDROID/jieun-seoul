@@ -1,4 +1,4 @@
-package org.sopt.sample
+package org.sopt.sample.presentation
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import org.sopt.sample.databinding.ActivityLoginBinding
+import org.sopt.sample.presentation.MainActivity
 import org.sopt.sample.viewmodel.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {

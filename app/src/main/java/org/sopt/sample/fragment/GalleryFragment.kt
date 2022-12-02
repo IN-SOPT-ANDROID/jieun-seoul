@@ -1,4 +1,4 @@
-package org.sopt.sample
+package org.sopt.sample.fragment
 
 import android.Manifest
 import android.os.Bundle

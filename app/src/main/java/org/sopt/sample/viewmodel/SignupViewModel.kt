@@ -5,44 +5,36 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import org.sopt.sample.data.dto.request.RequestSignupDTO
-import org.sopt.sample.data.dto.response.ResponseSignupDTO
+import org.sopt.sample.data.dto.request.RequestSignupDto
+import org.sopt.sample.data.dto.response.ResponseSignupDto
 import org.sopt.sample.remote.ApiFactory
 import org.sopt.sample.util.enqueueUtil
 import timber.log.Timber
 import java.util.regex.Pattern
 
 class SignupViewModel : ViewModel() {
-    //TODO 코드 이해
-    val Emailpattern = "^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z[0-9]]{6,10}$"
-    val Pwpattern = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&.])[A-Za-z[0-9]$@$!%*#?&.]{6,12}$"
-
-    private val _signupResult = MutableLiveData<ResponseSignupDTO?>()
-    val signupResult: LiveData<ResponseSignupDTO?>
-        get() = _signupResult
     private val signupService = ApiFactory.ServicePool.signupService
+    private val _signupResult = MutableLiveData<ResponseSignupDto?>()
+    val signupResult: LiveData<ResponseSignupDto?>
+        get() = _signupResult
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String>
         get() = _errorMessage
 
-    //TODO 코드 이해
-    val inputEmail = MutableLiveData<String>().apply { value = "" }
-    val inputPw = MutableLiveData<String>().apply { value = "" }
-    val inputId = MutableLiveData<String>().apply { value = "" }
+    val inputPw = MutableLiveData<String>()
+    val inputId = MutableLiveData<String>()
 
-    val inputEmailcheck : LiveData<Boolean> = Transformations.map(inputEmail) { email ->
-        Log.d("hi", email.toString())
-        validEmailcheck(email)
-    } // map을 활용해 실시간으로 변하는 input을 검증하여 Boolean 변수를 반환
 
-    val inputPwcheck : LiveData<Boolean> = Transformations.map(inputPw) { pw ->
-        Log.d("hi", pw.toString())
+    val inputPwcheck: LiveData<Boolean> = Transformations.map(inputPw) { pw ->
         validPwcheck(pw)
+    }
+    val inputIdcheck: LiveData<Boolean> get() = Transformations.map(inputId) { id ->
+        validIdcheck(id)
     }
 
 
     fun signUp(email: String, name: String, password: String) {
-        signupService.signup(RequestSignupDTO(email, name, password))
+        signupService.signup(RequestSignupDto(email, name, password))
             .enqueueUtil({ result ->
                 _signupResult.value = result
                 Timber.i("회원가입 성공: $result")
@@ -51,14 +43,18 @@ class SignupViewModel : ViewModel() {
             })
     }
 
-    //TODO 코드 이해
-    private fun validEmailcheck(Email: String): Boolean { // 이메일 형식 검증
-        val pattern = Pattern.compile(Emailpattern)
-        return pattern.matcher(Email).find()
-    }
 
-    private fun validPwcheck(Pw: String): Boolean { // 비밀번호 형식 검증
-        val pattern = Pattern.compile(Pwpattern)
+    // 아이디 형식 검증
+    private fun validIdcheck(Id: String): Boolean {
+        val pattern = Pattern.compile("""^(?=.*[0-9])(?=.*[a-zA-Z]).{6,10}$""")
+        Log.d("hhk", pattern.matcher(Id).find().toString())
+        return pattern.matcher(Id).find()
+    }
+    // 비밀번호 형식 검증
+    private fun validPwcheck(Pw: String): Boolean {
+        val pattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&.])[A-Za-z[0-9]$@$!%*#?&.]{6,12}$")
+        Log.d("hhh", pattern.matcher(Pw).find().toString())
         return pattern.matcher(Pw).find()
     }
+
 }

@@ -1,8 +1,12 @@
-package org.sopt.sample
+package org.sopt.sample.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import org.sopt.sample.fragment.GalleryFragment
+import org.sopt.sample.fragment.HomeFragment
+import org.sopt.sample.R
+import org.sopt.sample.fragment.SearchFragment
 import org.sopt.sample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
